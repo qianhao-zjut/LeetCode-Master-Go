@@ -15,11 +15,12 @@ func generateMatrix(n int) [][]int {
 	i := 0
 	j := -1
 	v := 1
+	k := 0
 
 	for {
 		orginI := i
 		orginJ := j
-		for k := 0; k < 4; k++ {
+		for ;; {
 			j += indexArray[0][k]
 			i += indexArray[1][k]
 			if i >= 0 && i < n && j >= 0 && j < n && matrix[i][j] == 0 {
@@ -29,8 +30,12 @@ func generateMatrix(n int) [][]int {
 				break
 			} else {
 				count++
+				k = (k+1) % 4
 				i = orginI
 				j = orginJ
+				if count == 4 {
+					break
+				}
 			}
 		}
 		if count == 4 {
